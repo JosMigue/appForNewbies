@@ -39,7 +39,7 @@ class UserController extends Controller
     public function store(UserCreateRequest $request)
     {
         User::create($request->validated());
-        return back()->with('status', __('Done'));
+        return back()->with('status', __(':entity has been created', ['entity' => __('user')]));
     }
 
     /**
