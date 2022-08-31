@@ -30,4 +30,5 @@
             </main>
         </div>
     </body>
+    <script type="text/javascript" src="{{asset('js/main.js')}}"></script>
 </html>

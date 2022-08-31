@@ -8,6 +8,7 @@
         </div>
     </x-slot>
     <x-main-content>
+      @include('components.content.status-content')
       <x-table.responsive-table>
         <x-slot name="headers">
           <th class="p-3">User</th>
@@ -41,12 +42,12 @@
                 <a href="#" class="text-gray-400 hover:text-gray-100 mr-2">
                   <i class="material-icons-outlined text-base">visibility</i>
                 </a>
-                <a href="#" class="text-gray-400 hover:text-gray-100  mx-2">
+                <a href="{{route('users.edit',$user->id)}}" class="text-gray-400 hover:text-gray-100  mx-2">
                   <i class="material-icons-outlined text-base">edit</i>
                 </a>
-                <a href="#" class="text-gray-400 hover:text-gray-100  ml-2">
+                <button  class="text-gray-400 hover:text-gray-100  ml-2" onclick="deleteUser('{{route('users.destroy', $user->id)}}', this)">
                   <i class="material-icons-round text-base">delete_outline</i>
-                </a>
+                </button>
               </td>
             </tr>
           @endforeach

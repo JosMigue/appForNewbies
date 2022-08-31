@@ -5,6 +5,7 @@
     "Log Out": "Cerrar sesión",
     "Sumbit": "Enviar",
     ":entity has been created": ":entity ha sido creado",
+    ":entity has been updated": ":entity ha sido actualizado",
     "user": "usuario",
     "Users": "Usuarios"
 }

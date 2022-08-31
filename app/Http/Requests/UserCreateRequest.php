@@ -23,10 +23,17 @@ class UserCreateRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|max:16|min:8|confirmed'
-        ];
+        if($this->method('PATCH')){
+            return [
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|unique:users,id,'.$this->user->id
+            ];
+        }else{
+            return [
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|max:16|min:8|confirmed'
+            ];
+        }
     }
 }

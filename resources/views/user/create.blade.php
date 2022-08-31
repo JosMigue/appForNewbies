@@ -14,21 +14,28 @@
           </div>
           @include('components.content.status-content')
           @include('components.content.errors')
-          <form action="{{route('users.store')}}" method="POST">
+          <form action="{{ $user->email ? route('users.update',$user->id) : route('users.store')}}" method="POST">
             @csrf
+            @if ($user->email)
+              @method('PATCH')  
+            @else
+              @method('POST')  
+            @endif
             <div class="space-y-6 py-6">
               <div>
-                <x-form.input type="text" placeholder="Name" name="name" value="{{ old('name') }}"  required />
+                <x-form.input type="text" placeholder="Name" name="name" value="{{ old('name') ? old('name') : $user->name  }}"  required />
               </div>
               <div>
-                <x-form.input type="email" placeholder="Email" name="email" value="{{ old('email') }}"  required />
+                <x-form.input type="email" placeholder="Email" name="email" value="{{ old('email') ? old('email') : $user->email  }}"  required />
               </div>
-              <div class="relative">
-                <x-form.input placeholder="Password" type="password" name="password"  required/>
-              </div>
-              <div class="relative">
-                <x-form.input placeholder="Password confirmation" type="password" name="password_confirmation" required/>
-              </div>
+              @if (!$user->email)
+                <div class="relative">
+                  <x-form.input placeholder="Password" type="password" name="password"  required/>
+                </div>
+                <div class="relative">
+                  <x-form.input placeholder="Password confirmation" type="password" name="password_confirmation" required/>
+                </div>
+              @endif
             </div>
             <div>
               <button type="submit" class="w-full flex justify-center bg-blue-800  hover:bg-blue-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500">
